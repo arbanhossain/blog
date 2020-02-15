@@ -4,6 +4,8 @@ The blog system fetches posts from `/posts` folder in markdown format. Each mark
 
 #### Setting Up
 
+Create two folders named `images` and `posts`.
+
 In the `posts.js` file, add the name and link to your posts. Like this:
 ```Javascript
 let posts = [
