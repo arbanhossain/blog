@@ -11,18 +11,20 @@ In the `posts.js` file, add the name and link to your posts. Like this:
 let posts = [
     {
         "name": "First Post",
-        "link": "first.md"
+        "link": "first"
     },
     {
         "name": "Robots and Future",
-        "link": "robot-future.md"
+        "link": "robot-future"
     },
     ...
     ...
 ]
 ```
 
-All your images should go to the `/images` folder. Just type the filename of the image in your markdown file.
+Make sure you dont add the `.md` extension in the link. The script automatically adds `.md` at the end.
+
+~~All your images should go to the `/images` folder. Just type the filename of the image in your markdown file.~~ You need link them manually for now. 
 
 #### Styling
 
