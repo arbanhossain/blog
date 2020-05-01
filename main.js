@@ -2,6 +2,7 @@ const main_body = document.getElementById("main-body");
 const postListDiv = document.getElementById("postlist");
 const postDiv = document.getElementById("post");
 const converter = new showdown.Converter();
+converter.setFlavor('github');
 
 let root = null;
 let useHash = true;
@@ -13,9 +14,11 @@ let router = new Navigo(root, useHash, hash);
 }*/
 
 const getPostList = () => {
-    let text = ``;
+    let text = `<h1>Posts</h1><hr>`;
     posts.forEach(item => {
-        text += `<p class="postlink" data-link="${item.link}" onclick="router.navigate('/${item.link}')">• ${item.name}</p><br>`;
+        if(!item.draft){
+            text += `<p class="postlink" data-link="${item.link}" onclick="router.navigate('/${item.link}')"><span class="linktext">• ${item.title} </span><span class="linkdate">&nbsp;\t(${item.date})</span></p><br>`;
+        }
     })
     main_body.innerHTML = text;
 }
@@ -28,7 +31,7 @@ const fetchPost = (link) => {
     .then(res => res.text())
     .then(data => {
         //console.log(data);
-        let html = `<p class='custom-link' onclick="router.navigate('/')">< go home</p>`
+        let html = `<p class='custom-link' onclick="router.navigate('/')">⟵ go home</p>`
         html += converter.makeHtml(data);
         //console.log(html);
         main_body.innerHTML = html;
