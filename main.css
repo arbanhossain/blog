@@ -1,10 +1,26 @@
 .postlink {
+    margin-bottom: -3%;
+}
+
+.linktext {
     color: #0076d1;
     cursor: pointer;
-    margin-bottom: -3%;
+}
+
+.linkdate {
+    font-size: 1rem;
 }
 
 .custom-link {
     color: #0076d1;
     cursor: pointer;
+}
+
+#main-body {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+p {
+    font-size: 1.1rem;
 }
