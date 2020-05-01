@@ -1,6 +1,8 @@
 const main_body = document.getElementById("main-body");
 const postListDiv = document.getElementById("postlist");
 const postDiv = document.getElementById("post");
+const imgPath = "../images"
+
 const converter = new showdown.Converter();
 converter.setFlavor('github');
 
@@ -12,6 +14,11 @@ let router = new Navigo(root, useHash, hash);
 /*document.body.onload = () => {
     getPostList();
 }*/
+
+const link_images = (html, link) => {
+    html = html.replace(/<img src="/g, `<img src="${imgPath}/${link}/`);
+    return html;
+}
 
 const getPostList = () => {
     let text = `<h1>Posts</h1><hr>`;
@@ -27,13 +34,14 @@ const fetchPost = (link) => {
     //console.log(e);
     //let link = e.dataset.link;
     //console.log(link);
-    fetch(`./posts/${link}`, {mode:'no-cors'})
+    fetch(`./posts/${link}.md`, {mode:'no-cors'})
     .then(res => res.text())
     .then(data => {
         //console.log(data);
         let html = `<p class='custom-link' onclick="router.navigate('/')">⟵ go home</p>`
         html += converter.makeHtml(data);
         //console.log(html);
+        html = link_images(html, link);
         main_body.innerHTML = html;
     })
     .catch(err => console.error(err));
@@ -46,7 +54,7 @@ router.on(() => {
 
 router.on({
     '/:id': (params) => {
-        fetchPost(params.id+'.md');
+        fetchPost(params.id);
         console.log('Loaded!');
     }
 })
